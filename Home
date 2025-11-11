@@ -1,0 +1,75 @@
+import React, { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Feather, TrendingUp, Users, Zap, MessageSquare, Target, ChevronDown } from 'lucide-react';
+import HeroSection from '../components/home/HeroSection';
+import AboutSection from '../components/home/AboutSection';
+import FeaturesSection from '../components/home/FeaturesSection';
+import StatsSection from '../components/home/StatsSection';
+import CTASection from '../components/home/CTASection';
+
+export default function Home() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#0a0a0f] text-white overflow-x-hidden">
+      {/* Floating Navigation */}
+      <nav className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
+        scrollY > 100 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+      }`}>
+        <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 flex items-center gap-6">
+          <div className="flex items-center gap-2">
+            <Feather className="w-5 h-5 text-cyan-400" />
+            <span className="font-bold">Ascend Labs</span>
+          </div>
+          <div className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#about" className="hover:text-cyan-400 transition-colors">About</a>
+            <a href="#features" className="hover:text-cyan-400 transition-colors">Features</a>
+            <a href="#stats" className="hover:text-cyan-400 transition-colors">Community</a>
+          </div>
+          <Button size="sm" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 border-0">
+            Join Telegram
+          </Button>
+        </div>
+      </nav>
+
+      <HeroSection />
+      <AboutSection />
+      <FeaturesSection />
+      <StatsSection />
+      <CTASection />
+
+      {/* Footer */}
+      <footer className="relative border-t border-white/5 py-12">
+        <div className="absolute inset-0 bg-gradient-to-t from-purple-900/10 to-transparent pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-50" />
+                <Feather className="w-8 h-8 text-cyan-400 relative" />
+              </div>
+              <div>
+                <h3 className="font-bold text-xl">Ascend Labs</h3>
+                <p className="text-sm text-gray-400">Elite Crypto Signals</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-8 text-sm text-gray-400">
+              <a href="#" className="hover:text-cyan-400 transition-colors">Terms</a>
+              <a href="#" className="hover:text-cyan-400 transition-colors">Privacy</a>
+              <a href="#" className="hover:text-cyan-400 transition-colors">Contact</a>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-white/5 text-center text-sm text-gray-500">
+            © 2025 Ascend Labs. Not financial advice. Trade at your own risk.
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
