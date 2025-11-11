@@ -1,0 +1,94 @@
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Feather, ChevronDown, Sparkles } from 'lucide-react';
+
+export default function HeroSection() {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-[#0a0a0f] to-cyan-900/20" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/30 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-600/30 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+      </div>
+
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-40" />
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+        {/* Logo with Glow Effect */}
+        <div className="mb-8 inline-block animate-float">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-600 blur-3xl opacity-60 animate-pulse" />
+            <div className="relative bg-gradient-to-br from-cyan-500 to-purple-600 p-6 rounded-3xl">
+              <Feather className="w-16 h-16 text-white" strokeWidth={1.5} />
+            </div>
+          </div>
+        </div>
+
+        {/* Headline */}
+        <div className="mb-6">
+          <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 mb-6">
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <span className="text-sm text-cyan-400 font-medium">Elite Crypto Signals Community</span>
+          </div>
+          <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
+            <span className="bg-gradient-to-r from-white via-cyan-200 to-purple-300 bg-clip-text text-transparent">
+              Ascend Labs
+            </span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Join our exclusive Telegram community for high-conviction crypto call-outs, 
+            <span className="text-cyan-400 font-semibold"> real-time alerts</span>, and 
+            <span className="text-purple-400 font-semibold"> expert analysis</span>
+          </p>
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+          <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 border-0 text-white px-8 py-6 text-lg font-semibold shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 hover:scale-105">
+            Join Telegram Now
+          </Button>
+          <Button size="lg" variant="outline" className="border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 px-8 py-6 text-lg">
+            Learn More
+          </Button>
+        </div>
+
+        {/* Stats Row */}
+        <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          {[
+            { label: 'Active Members', value: '5K+' },
+            { label: 'Success Rate', value: '87%' },
+            { label: 'Daily Signals', value: '10+' }
+          ].map((stat, i) => (
+            <div key={i} className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-gray-400 mt-1">{stat.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
+        <ChevronDown className="w-8 h-8 text-gray-400" />
+      </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+      `}</style>
+    </section>
+  );
+}
